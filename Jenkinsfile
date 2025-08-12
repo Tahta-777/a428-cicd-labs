@@ -29,3 +29,4 @@ pipeline {
 			SH './jenkins/scripts/kill.sh'
 	}
 }
+}

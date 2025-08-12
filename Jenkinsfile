@@ -34,7 +34,7 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('check validasi') {
       steps {
         sh 'curl -I http://localhost:3000'
       }

@@ -22,29 +22,10 @@ pipeline {
         sh 'npm run build'
       }
     }
-
-    stage('Serve') {
-      steps {
-        // Install serve locally
-        sh 'npm install serve'
-
-        // Start server
-        sh 'npx serve -s build -l 3000 &'
-        sh 'sleep 10'
-      }
-    }
-
-    stage('check validasi') {
-      steps {
-        sh 'curl -I http://localhost:3000'
-      }
-    }
-  }
-
-
-  post {
-    always {
-      sh 'echo "Pipeline completed"'
-    }
-  }
+	stage("Deploy")
+		steps {
+			sh './jenkins/script/deliver.sh'
+			input message: 'Sudah selesai menggunakan React App? (klik "Proceed" untuk mengakhiri)'
+			SH './jenkins/scripts/kill.sh'
+	}
 }
